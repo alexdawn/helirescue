@@ -3,11 +3,12 @@ extends Node2D
 @export var speed = 400
 @export var spotRange = 200
 @export var rescueRange = 20
-@export var fuel = 1
+@export var fuel = 100
 @export var fuelBurnRate = 1
 
-@onready var rescueArea = $Area2D
+@onready var rescueArea = $Sprite2D/WinchSprite/Area2D
 @onready var sprite = $Sprite2D
+@onready var winchSprite = $Sprite2D/WinchSprite
 @onready var info = $"../CanvasLayer/Stats"
 @onready var banner = $"../CanvasLayer/Banner"
 
@@ -46,7 +47,10 @@ func checkRescue():
 				var sound = $FoundPing
 				if !sound.playing:
 					sound.play()
-		if (rescueArea.overlaps_area(wreck.area)):
+		if (
+			rescueArea.overlaps_area(wreck.area)
+			and winchSprite.visible
+		):
 			wreck.rescued()
 			var sound = $SuccessPing
 			if !sound.playing:
@@ -63,6 +67,8 @@ func move(delta: float) -> void:
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
+	if Input.is_action_just_pressed("winch"):
+		winchSprite.activate()
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed

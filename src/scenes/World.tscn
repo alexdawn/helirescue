@@ -2,13 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://5haj4pmc7d5" path="res://src/shaders/water.gdshader" id="1_6g2ek"]
 [ext_resource type="Texture2D" uid="uid://b0kjju8uvhblj" path="res://src/resources/watertiles.png" id="2_ijt24"]
-[ext_resource type="Script" uid="uid://bhk7ge05w2byv" path="res://src/vehicle.gd" id="3_g06df"]
-[ext_resource type="SpriteFrames" uid="uid://cwdjs4epvd115" path="res://src/resources/HeliAnimated.tres" id="4_evdfb"]
-[ext_resource type="Script" uid="uid://r8hi3xyqrqkr" path="res://src/hoverShake.gd" id="5_nwnha"]
-[ext_resource type="Script" uid="uid://ckpckb1caphke" path="res://src/sonar.gd" id="6_nahcy"]
-[ext_resource type="Script" uid="uid://bxul747pr14ug" path="res://src/ping_icon.gd" id="7_vewai"]
-[ext_resource type="AudioStream" uid="uid://b3w5b7i6y0kth" path="res://src/resources/PowerUp3.wav" id="8_i5olr"]
-[ext_resource type="AudioStream" uid="uid://smto83qa42yc" path="res://src/resources/Jump5.wav" id="9_jbq7q"]
+[ext_resource type="PackedScene" uid="uid://cyakkcsubc25p" path="res://src/scenes/vehicle.tscn" id="3_xc7f8"]
 [ext_resource type="Script" uid="uid://wckeef5xdv06" path="res://src/area_spawner.gd" id="10_bufb4"]
 [ext_resource type="AudioStream" uid="uid://bmeun2homrmyv" path="res://src/resources/music/PanicRotor.wav" id="11_yxwdv"]
 [ext_resource type="Script" uid="uid://dcx27rfcb6a7o" path="res://src/scenes/info.gd" id="12_ijt24"]
@@ -27,38 +21,6 @@ frame_1/duration = 1.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_bah7m"]
 diffuse_texture = SubResource("AnimatedTexture_p1v5b")
-
-[sub_resource type="Gradient" id="Gradient_eu7l1"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_p1v5b"]
-gradient = SubResource("Gradient_eu7l1")
-width = 128
-height = 128
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5862069, 0.5270936)
-
-[sub_resource type="Gradient" id="Gradient_p1v5b"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wygdx"]
-gradient = SubResource("Gradient_p1v5b")
-fill = 1
-fill_from = Vector2(0.7304348, 0.45217392)
-fill_to = Vector2(0.5173913, 0.45652175)
-
-[sub_resource type="Gradient" id="Gradient_fv4w7"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fvag4"]
-gradient = SubResource("Gradient_fv4w7")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5763547, 0.45320198)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fv4w7"]
-size = Vector2(40, 32)
 
 [sub_resource type="Curve2D" id="Curve2D_wygdx"]
 _data = {
@@ -84,58 +46,7 @@ polygon = PackedVector2Array(-1052, -1009, -1378, 1192, 2036, 1077, 1613, -940)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=63967930]
 
-[node name="Vehicle" type="Node2D" parent="." unique_id=207668354]
-script = ExtResource("3_g06df")
-speed = 200
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Vehicle" unique_id=717551056]
-light_mask = 3
-texture_filter = 1
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("4_evdfb")
-autoplay = "default"
-frame_progress = 0.8883103
-script = ExtResource("5_nwnha")
-
-[node name="Sonar" type="AudioListener2D" parent="Vehicle" unique_id=1126078336]
-scale = Vector2(5, 5)
-current = true
-script = ExtResource("6_nahcy")
-
-[node name="PointLight2D" type="PointLight2D" parent="Vehicle" unique_id=1474741329]
-light_mask = 2
-scale = Vector2(4.65625, 3.921875)
-energy = 2.0
-texture = SubResource("GradientTexture2D_p1v5b")
-offset = Vector2(0, 12.805)
-texture_scale = 4.0
-
-[node name="PingIcon" type="Sprite2D" parent="Vehicle" unique_id=2146725004]
-modulate = Color(15.01421, 15.01421, 15.01421, 1)
-light_mask = 0
-texture = SubResource("GradientTexture2D_wygdx")
-script = ExtResource("7_vewai")
-
-[node name="SuccessPing" type="AudioStreamPlayer" parent="Vehicle" unique_id=453241302]
-stream = ExtResource("8_i5olr")
-
-[node name="FoundPing" type="AudioStreamPlayer" parent="Vehicle" unique_id=1422876172]
-stream = ExtResource("9_jbq7q")
-
-[node name="Shadow" type="PointLight2D" parent="Vehicle" unique_id=2094645783]
-light_mask = 2
-scale = Vector2(21.680664, 15.3811035)
-energy = 0.6
-blend_mode = 1
-texture = SubResource("GradientTexture2D_fvag4")
-offset = Vector2(0, 5.67)
-texture_scale = 0.35
-
-[node name="Area2D" type="Area2D" parent="Vehicle" unique_id=1948914433]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Vehicle/Area2D" unique_id=1305220487]
-position = Vector2(0, 88)
-shape = SubResource("RectangleShape2D_fv4w7")
+[node name="Vehicle" parent="." unique_id=990502825 instance=ExtResource("3_xc7f8")]
 
 [node name="WreckSpawner" type="Path2D" parent="." unique_id=1227076228]
 position = Vector2(-574, -393)
@@ -173,12 +84,20 @@ offset_right = 292.5
 offset_bottom = 41.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "RESCUE THE PEOPLE"
+text = "follow the signal rescue the people!"
 label_settings = SubResource("LabelSettings_ijt24")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 uppercase = true
 script = ExtResource("13_g06df")
 
-[connection signal="pinged" from="Vehicle/PingIcon" to="Vehicle/Sonar" method="_on_ping_icon_pinged"]
-[connection signal="pinged" from="Vehicle/PingIcon" to="Vehicle/PingIcon" method="_on_pinged"]
+[node name="SubLabel" type="Label" parent="CanvasLayer/Banner" unique_id=148234198]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 59.0
+grow_vertical = 0
+text = "subtext"
