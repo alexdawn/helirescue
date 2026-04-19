@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cwdjs4epvd115"]
+
+[ext_resource type="Texture2D" uid="uid://cecxawrfsl2o5" path="res://src/resources/art/heli-Sheet.png" id="1_b6fq7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_noaof"]
+atlas = ExtResource("1_b6fq7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00ed5"]
+atlas = ExtResource("1_b6fq7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqe6y"]
+atlas = ExtResource("1_b6fq7")
+region = Rect2(64, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_noaof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ed5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqe6y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]

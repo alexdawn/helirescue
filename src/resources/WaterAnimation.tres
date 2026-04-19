@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dcar0jv5nkalu"]
+
+[ext_resource type="Texture2D" uid="uid://b0kjju8uvhblj" path="res://src/resources/watertiles.png" id="1_03xmx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0k2nm"]
+atlas = ExtResource("1_03xmx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkmfh"]
+atlas = ExtResource("1_03xmx")
+region = Rect2(32, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0k2nm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkmfh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
